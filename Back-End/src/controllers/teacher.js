@@ -20,11 +20,60 @@ exports.create = (req, res) => {
       if (err)
         res.status(500).send({
           message:
-            err.message || "Some error occurred while creating the Tutorial."
+            err.message || "Some error occurred while creating the Teacher."
         });
       else res.send(data);
     });
 };
+
+exports.login = (req, res) => {
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+  //Login Teacher
+  const teacher = new Teachers({
+    email: req.body.email,
+    password: req.body.password
+  })
+  // Save Tutorial in the database
+  Teachers.login(teacher, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the user."
+      });
+    else res.send(data);
+  });
+};
+
+exports.tstemail = (req, res) => {
+  
+  // Validate request
+  if (!req.body) {
+    res.status(400).send({
+      message: "Content can not be empty!"
+    });
+  }
+
+  //Login Teacher
+  const teacher = new Teachers({
+    email: req.body.email
+  })
+  console.log(teacher.email)
+  // Save Tutorial in the database
+  Teachers.email(teacher, (err, data) => {
+    if (err)
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while creating the ll."
+      });
+    else res.send(data);
+  });
+};
+
 
 exports.findOne = (req, res) => {
   Teachers.findById(req.params.id, (err, data) => {

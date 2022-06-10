@@ -8,17 +8,53 @@ const Teachers = function(teacher) {
   this.noteacher = teacher.noteacher;
 };
 
-Teachers.create = (newTutorial, result) => {
-  sql.query("INSERT INTO teachers SET ?", newTutorial, (err, res) => {
+Teachers.create = (newTeacher, result) => {
+  sql.query("INSERT INTO teachers SET ?", newTeacher, (err, res) => {
     if (err) {
       //console.log("error: ", err);
       result(err, null);
       return;
     }
-    //console.log("created teacher: ", { id: res.insertId, ...newTutorial });
-    result(null, { id: res.insertId, ...newTutorial });
+    //console.log("created teacher: ", { id: res.insertId, ...newTeacher });
+    result(null, { id: res.insertId, ...newTeacher });
   });
 };
+
+Teachers.login = (newTeacher, result) => {
+  sql.query(`SELECT * FROM teachers WHERE email = '${newTeacher.email}' AND password = '${newTeacher.password}'`, (err, res) => {
+    if (err) {
+      //console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      //console.log("found teacher: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+    // not found Teachers with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
+
+Teachers.email = (newTeacher, result) => {
+  sql.query(`SELECT * FROM teachers WHERE email = '${newTeacher.email}'`, (err, res) => {
+    if (err) {
+      //console.log("error: ", err);
+      result(err, null);
+      return;
+    }
+    if (res.length) {
+      //console.log("found teacher: ", res[0]);
+      result(null, res[0]);
+      return;
+    }
+    // not found Teachers with the id
+    result({ kind: "not_found" }, null);
+  });
+};
+
 
 Teachers.findById = (id, result) => {
   sql.query(`SELECT * FROM teachers WHERE id = ${id}`, (err, res) => {
