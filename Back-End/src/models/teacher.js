@@ -21,7 +21,7 @@ Teachers.create = (newTeacher, result) => {
 };
 
 Teachers.login = (newTeacher, result) => {
-  sql.query(`SELECT * FROM teachers WHERE email = '${newTeacher.email}' AND password = '${newTeacher.password}'`, (err, res) => {
+  sql.query(`SELECT * FROM teachers WHERE email = ? AND password = ?`,[newTeacher.email, newTeacher.password], (err, res) => {
     if (err) {
       //console.log("error: ", err);
       result(err, null);
@@ -39,7 +39,7 @@ Teachers.login = (newTeacher, result) => {
 
 
 Teachers.email = (newTeacher, result) => {
-  sql.query(`SELECT * FROM teachers WHERE email = '${newTeacher.email}'`, (err, res) => {
+  sql.query(`SELECT * FROM teachers WHERE email = ?`, [newTeacher.email], (err, res) => {
     if (err) {
       //console.log("error: ", err);
       result(err, null);
@@ -57,7 +57,7 @@ Teachers.email = (newTeacher, result) => {
 
 
 Teachers.findById = (id, result) => {
-  sql.query(`SELECT * FROM teachers WHERE id = ${id}`, (err, res) => {
+  sql.query(`SELECT * FROM teachers WHERE id = ?`, [id], (err, res) => {
     if (err) {
       //console.log("error: ", err);
       result(err, null);

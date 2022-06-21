@@ -20,6 +20,15 @@ app.get("/", (req, res) => {
 });
 
 require("./src/routes/teacher.js")(app);
+require("./src/routes/degrees.js")(app);
+require("./src/routes/students.js")(app);
+require("./src/routes/schoolyears.js")(app);
+require("./src/routes/courses.js")(app);
+require("./src/routes/summaries.js")(app);
+require("./src/routes/evaluationmethods.js")(app);
+require("./src/routes/quotation.js")(app);
+require("./src/routes/enrolled.js")(app);
+require("./src/routes/assessments.js")(app);
 
 const PORT = 8080;
 app.listen(PORT, () => {

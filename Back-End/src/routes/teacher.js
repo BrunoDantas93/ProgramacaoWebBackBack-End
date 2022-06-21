@@ -5,10 +5,10 @@ module.exports = app => {
     // Create a new teacher
     router.post("/", teachers.create);
     
-    // Update a teacher with id
+    // Login a teacher 
     router.post("/login", teachers.login);
 
-    // Update a teacher with id
+    // Verify if the email not in use
     router.post("/email", teachers.tstemail);
 
     // Retrieve a single teacher with id    
