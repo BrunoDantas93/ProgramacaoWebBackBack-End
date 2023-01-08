@@ -9,7 +9,7 @@ exports.create = (req, res) => {
     }
 
     const assessments = new Assessments({
-      grade: req.body.grade,
+      Grade: req.body.Grade,
       Quotation_id: req.body.Quotation_id,
       Quotation_EvaluationMethods_id: req.body.Quotation_EvaluationMethods_id,
       Enrolled_id: req.body.Enrolled_id,

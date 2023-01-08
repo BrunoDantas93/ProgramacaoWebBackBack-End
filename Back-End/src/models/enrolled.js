@@ -33,7 +33,7 @@ Enrolled.findAll = (Course_id, result) => {
 };
 
 Enrolled.removeByStudent = (id, result) => {
-  sql.query("DELETE FROM enrolled WHERE Students_id = ?", id, (err, res) => {
+  sql.query("DELETE FROM enrolled WHERE id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);

@@ -1,7 +1,7 @@
 const sql = require("../database");
 // constructor
 const Assessments = function(assessments) {
-  this.grade = assessments.grade;
+  this.grade = assessments.Grade;
   this.Quotation_id = assessments.Quotation_id;
   this.Quotation_EvaluationMethods_id = assessments.Quotation_EvaluationMethods_id;
   this.Enrolled_id = assessments.Enrolled_id;
@@ -69,7 +69,7 @@ Assessments.remove = (id, result) => {
 };
 
 Assessments.removeByStudent = (id, result) => {
-  sql.query("DELETE FROM assessments WHERE Enrolled_Students_id = ?", id, (err, res) => {
+  sql.query("DELETE FROM assessments WHERE Enrolled_id = ?", id, (err, res) => {
     if (err) {
       console.log("error: ", err);
       result(null, err);
